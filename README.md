@@ -68,7 +68,7 @@ $roscore
 ```
 - 端末2：パブリッシャを起動します
 ```
-$rosrun flash_led input.py
+$rosrun flash_led input_num.py
 ```
 - 端末3：パブリッシャの起動後にサブスクライバを起動します
 ```
