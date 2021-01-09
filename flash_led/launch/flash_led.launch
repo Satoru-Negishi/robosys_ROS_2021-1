@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="flash_led" name="input" type="input_num.py"/>
+	<node pkg="flash_led" name="flash" type="flash_led.py" output="screen"/>
+</launch>
