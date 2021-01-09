@@ -3,7 +3,7 @@
 
 ## 目次
 - 概要
-- 用意
+- 使用
 - 回路
 - 環境構築
 - 実行
@@ -15,7 +15,7 @@
 - [Publisher]10進数の0~15までのキーボード入力を受け付ける
 - [Subscriber]入力された数字を2進数に変換し表示＆1/0に対応してLEDを点灯・消灯させる
 
-## 用意
+## 使用
 - Raspberry Pi 4
 - ブレッドボード
 - LED
@@ -30,20 +30,19 @@ LEDを光らせるための電子回路は以下のように作成しました�
   
   
 ## 環境構築
+### 事前準備
 下記の資料を参考にROSの環境構築とワークスペースを作成しています。
 - ROS:https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu20.04_desktop
 - ワークスペース:https://github.com/ryuichiueda/robosys2020/blob/master/md/ros.md
-  
-   
-このパッケージを使用するためにクローンしてください。
+### クローン
+デバイスドライバとパッケージを使用するためにこのリポジトリをクローンしてください。
 ```
 $ git clone https://github.com/Satoru-Negishi/robosys_ROS_2021-1.git
 ```
-  
+### デバイスドライバ
 デバイスドライバは以前課題として作成したものを改良して使用しています。  
 セットアップや動作確認は[こちら](https://github.com/SatoruNegishi/robosys_devicedriver_2020-12)を参考にしてください。  
-  
-  
+### パッケージのビルド
 クローンしたROSのパッケージはビルドします。
 ```
 $ cd ~/catkin_ws
@@ -77,6 +76,6 @@ $rosrun flash_led flash_led.py
   
 ## 動画
 動作の様子が分かる動画をYouTubeに投稿しています。  
-[動画リンク](https://youtu.be/wJdgtzbcISE)
+- [動画リンク](https://youtu.be/wJdgtzbcISE)
 ## ライセンス
 [GNU GENERAL PUBLIC LICENSE](https://github.com/Satoru-Negishi/robosys_ROS_2021-1/blob/main/COPYING)
