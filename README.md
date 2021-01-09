@@ -34,8 +34,8 @@ LEDは、左からGPIO[23,24,25,26]に接続しています。
 ## 環境構築
 ### 事前準備
 下記の資料を参考にROSの環境構築とワークスペースを作成しています。
-- ROS:https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu20.04_desktop
-- ワークスペース:https://github.com/ryuichiueda/robosys2020/blob/master/md/ros.md
+- ROS：https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu20.04_desktop
+- ワークスペース：https://github.com/ryuichiueda/robosys2020/blob/master/md/ros.md
 ### クローン
 デバイスドライバとパッケージを使用するためにこのリポジトリをクローンしてください。
 ```
