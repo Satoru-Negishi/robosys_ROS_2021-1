@@ -43,7 +43,7 @@ $ git clone https://github.com/Satoru-Negishi/robosys_ROS_2021-1.git
 ```
 ### デバイスドライバ
 デバイスドライバは以前課題として作成したものを改良して使用しています。  
-セットアップや動作確認は[こちら](https://github.com/SatoruNegishi/robosys_devicedriver_2020-12)を参考にしてください。  
+セットアップや動作確認は[こちら](https://github.com/Satoru-Negishi/robosys_devicedriver_2020-12)を参考にしてください。  
 ### パッケージのビルド
 クローンしたROSのパッケージはビルドします。
 ```
@@ -80,4 +80,4 @@ $rosrun flash_led flash_led.py
 動作の様子が分かる動画をYouTubeに投稿しています。  
 - [動画リンク](https://youtu.be/wJdgtzbcISE)
 ## ライセンス
-[GNU GENERAL PUBLIC LICENSE](https://github.com/Satoru-Negishi/robosys_ROS_2021-1/blob/main/COPYING)
+[GNU GENERAL PUBLIC LICENSE v3.0](https://github.com/Satoru-Negishi/robosys_ROS_2021-1/blob/main/COPYING)
