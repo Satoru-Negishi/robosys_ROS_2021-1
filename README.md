@@ -3,9 +3,11 @@
 
 ## 目次
 - 概要
-- 用意・環境構築
+- 用意
 - 回路
-- 実行コマンド
+- 環境構築
+- 実行
+- 動画
 - ライセンス
 
 ## 概要
@@ -32,13 +34,15 @@ LEDを光らせるための電子回路は以下のように作成しました�
 - ROS:https://github.com/ryuichiueda/ros_setup_scripts_Ubuntu20.04_desktop
 - ワークスペース:https://github.com/ryuichiueda/robosys2020/blob/master/md/ros.md
   
-実際に動作させるために、このパッケージをクローンしてください。
+   
+このパッケージを使用するためにクローンしてください。
 ```
 $ git clone https://github.com/Satoru-Negishi/robosys_ROS_2021-1.git
 ```
   
 デバイスドライバは以前課題として作成したものを改良して使用しています。  
 セットアップや動作確認は[こちら](https://github.com/SatoruNegishi/robosys_devicedriver_2020-12)を参考にしてください。  
+  
   
 クローンしたROSのパッケージはビルドします。
 ```
@@ -48,3 +52,31 @@ $ source ~/.bashrc
 ```
 
 ## 実行
+以下のコードを実行することでパブリッシャとサブスクライバのノードが同時に起動します。
+```
+$roslaunch flash_led flash_led.launch
+```
+起動後、キーボード入力の待機状態になるため、0～15まで数字を入力してください。  
+入力した数字の2進数表記が画面上に表示され、 1 - ON / 0 - OFF のように対応したLEDが点灯・消灯します。  
+    
+### 補足
+パブリッシャとサブスクライバを別々の端末で起動したい場合は以下の様に行ってください。
+- 端末1：roscoreを起動します
+```
+$roscore
+```
+- 端末2：パブリッシャを起動します
+```
+$rosrun flash_led input.py
+```
+- 端末3：パブリッシャの起動後にサブスクライバを起動します
+```
+$rosrun flash_led flash_led.py
+```
+この状態でパブリッシャを起動している端末上で数字を入力することで上記と同様の動作が行われます。  
+  
+## 動画
+動作の様子が分かる動画をYouTubeに投稿しています。  
+[動画リンク](https://youtu.be/wJdgtzbcISE)
+## ライセンス
+[GNU GENERAL PUBLIC LICENSE](https://github.com/Satoru-Negishi/robosys_ROS_2021-1/blob/main/COPYING)
