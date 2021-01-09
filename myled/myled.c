@@ -9,84 +9,35 @@
 MODULE_AUTHOR("Ryuuichi Ueda and Satoru Negishi");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
-MODULE_VERSION("0.0.1");
+MODULE_VERSION("0.0.2");
 
 static dev_t dev;
 static struct cdev cdv;
 static struct class *cls = NULL;
 static volatile u32 *gpio_base = NULL;
 
-static int led_gpio[3] = {23, 25, 26};
-static int LED_gpio[2] = {27, 17};
-static int ROS_LED_gpio[1] = {20};
+static int ROS_LED_gpio[4] = {23,24,25,26};
 
 static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_t* pos)
 {
 	char c; //読み込んだ字を入れる変数
-	int n,m,j, k;
+	char num[] = {'0','1','2','3','4','5','6','7'};
+	int i, led_num, onoff;
+
 	if(copy_from_user(&c,buf,sizeof(char)))
 			return -EFAULT;
+	for(i = 0; i < 8; i++) {
+		if(c == num[i]) {
+		       	led_num = i / 2;
+			onoff = i % 2;
+			if(onoff > 0)
+				gpio_base[7] = 1 << ROS_LED_gpio[led_num];
+			else
+				gpio_base[10] = 1 << ROS_LED_gpio[led_num];
+		}
+	}
 
 //	printk(KERN_INFO "receive %c\n",c);
-	if(c == '0') {
-		for(n = 0; n < 3; n++)
-			gpio_base[10] = 1 << led_gpio[n];
-	}
-	else if(c== '1') {
-		for(n = 0; n < 3; n++) 
-			gpio_base[7] = 1 << led_gpio[n];
-	}
-	else if(c == '2') {
-		for(n = 0; n < 2; n++)
-			gpio_base[10] = 1 << LED_gpio[n];
-	}
-	else if(c == '3') {
-		for(n = 0; n < 2; n++)
-			gpio_base[7] = 1 << LED_gpio[n];
-	}
-	else if(c=='4'){
-		for(n = 0; n < 3; n++) {
-			gpio_base[10] = 1 << led_gpio[n];
-			if (n < 2)
-				gpio_base[10] = 1 << LED_gpio[n];
-		}
-
-		for(n = 0; n < 2; n++) {
-			j = 0, k=0;
-			gpio_base[7] = 1 << led_gpio[j];
-			gpio_base[7] = 1 << LED_gpio[k];
-			ssleep(3);
-			for(m = 0; m < 5; m ++) {
-				gpio_base[10] = 1 << LED_gpio[k];
-				msleep(300);
-				gpio_base[7] = 1 << LED_gpio[k];
-				msleep(300);
-			}
-			gpio_base[10] = 1 << LED_gpio[k];
-			k++;
-			gpio_base[7] = 1 << LED_gpio[k];
-			ssleep(3);
-			gpio_base[10] = 1 << led_gpio[j];
-			j++;
-			gpio_base[7] = 1 << led_gpio[j];
-			ssleep(2);
-			gpio_base[10] = 1 << led_gpio[j];
-			j++;
-			gpio_base[7] = 1 << led_gpio[j];
-			ssleep(5);
-			gpio_base[10] = 1 << led_gpio[j];
-			gpio_base[10] = 1 << LED_gpio[k];
-		}
-	}
-	else if(c == '5') {
-		gpio_base[10] = 1 << ROS_LED_gpio[0];
-		//gpio_base[10] = 1 << ROS_LED_gpio[1];
-	}
-	else if(c == '6') {
-		gpio_base[7] = 1 << ROS_LED_gpio[0];
-		//gpio_base[7] = 1 << ROS_LED_gpio[1];
-	}
-
 	return 1; //読み込んだ文字数を返す（この場合はダミーの１）
 }
 
@@ -136,24 +87,8 @@ static int __init init_mod(void) //カーネルモジュールの初期化
 	gpio_base = ioremap_nocache(0xfe200000, 0xA0);
 
 	int n;
-	/*
-	for(n = 0; n < 3; n++){
-		const u32 led = led_gpio[n];
-		const u32 index = led/10; //GPFSEL2
-		const u32 shift = (led%10)*3; //15bit
-		const u32 mask = ~(0x7 << shift); 
-		gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
-	}
 
-	for(n = 0; n < 2; n++){
-		const u32 led = LED_gpio[n];
-		const u32 index = led/10; //GPFSEL2
-		const u32 shift = (led%10)*3; //15bit
-		const u32 mask = ~(0x7 << shift); 
-		gpio_base[index] = (gpio_base[index] & mask) | (0x1 << shift);
-	}
-	*/
-	for(n = 0; n < 1; n++) {
+	for(n = 0; n < 4; n++) {
 		const u32 led = ROS_LED_gpio[n];
 		const u32 index = led/10; //GPFSEL2
 		const u32 shift = (led%10)*3; //15bit
