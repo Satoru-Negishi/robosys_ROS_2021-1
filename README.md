@@ -24,10 +24,12 @@
 
 ## 回路
 LEDを光らせるための電子回路は以下のように作成しました。  
-[写真]  
+LEDは、左からGPIO[23,24,25,26]に接続しています。
+### 写真  
+![ROS回路](https://user-images.githubusercontent.com/73330874/104090771-5054dc00-52bc-11eb-8d72-87d31e208fb4.jpg)
   
-[回路図]
-  
+### 回路図
+![ROS回路図](https://user-images.githubusercontent.com/73330874/104091203-4b455c00-52bf-11eb-99ff-27c504c9142f.png)  
   
 ## 環境構築
 ### 事前準備
