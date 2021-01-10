@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="robosys_ROS_2021-1" name="input" type="input_num.py"/>
+	<node pkg="robosys_ROS_2021-1" name="flash" type="flash_led.py" output="screen"/>
+</launch>
