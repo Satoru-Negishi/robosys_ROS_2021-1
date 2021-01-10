@@ -55,7 +55,7 @@ $ source ~/.bashrc
 ## 実行
 以下のコードを実行することでパブリッシャとサブスクライバのノードが同時に起動します。
 ```
-$roslaunch flash_led flash_led.launch
+$roslaunch robosys_ROS_2021-1 flash_led.launch
 ```
 起動後、キーボード入力の待機状態になるため、0～15まで数字を入力してください。  
 入力した数字の2進数表記が画面上に表示され、 1 - ON / 0 - OFF のように対応したLEDが点灯・消灯します。  
@@ -68,16 +68,17 @@ $roscore
 ```
 - 端末2：パブリッシャを起動します
 ```
-$rosrun flash_led input_num.py
+$rosrun robosys_ROS_2021-1 input_num.py
 ```
 - 端末3：パブリッシャの起動後にサブスクライバを起動します
 ```
-$rosrun flash_led flash_led.py
+$rosrun robosys_ROS_2021-1 flash_led.py
 ```
 この状態でパブリッシャを起動している端末上で数字を入力することで上記と同様の動作が行われます。  
   
 ## 動画
 動作の様子が分かる動画をYouTubeに投稿しています。  
+(動画内で使用しているパッケージは最新のものではないため、コマンドが一部上記のものと異なります。)  
 - [動画リンク](https://youtu.be/wJdgtzbcISE)
 ## ライセンス
 [GNU GENERAL PUBLIC LICENSE v3.0](https://github.com/Satoru-Negishi/robosys_ROS_2021-1/blob/main/COPYING)
