@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>flash_led</name>
+  <name>robosys_ROS_2021-1</name>
   <version>0.0.0</version>
   <description>The flash_led package</description>
 
